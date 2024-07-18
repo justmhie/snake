@@ -4,11 +4,12 @@ const scoreText = document.querySelector("#scoreText");
 const resetBtn = document.querySelector("#resetBtn");
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
+
 const boardBackground = "white";
 const snakeColor = "pink";
 const snakeBorder = "black";
-
-const foodColor = "purple";
+const foodImage = new Image();
+foodImage.src = 'pinkheart.png';
 
 const unitSize = 25;
 let running = false;
@@ -33,7 +34,6 @@ function gameStart(){
     running = true;
     scoreText.textContent = score;
     createFood();
-    drawFood();
     nextTick();
 };
 function nextTick(){
@@ -61,11 +61,9 @@ function createFood(){
     }
     foodX = randomFood(0,gameWidth - unitSize);
     foodY = randomFood(0,gameWidth - unitSize);
-    //console.log(foodX + " " + foodY);
 };
 function drawFood(){
-    ctx.fillStyle = foodColor;
-    ctx.fillRect(foodX, foodY, unitSize, unitSize);
+    ctx.drawImage(foodImage, foodX, foodY, unitSize, unitSize);
 };
 function moveSnake(){
     const head = {x: snake[0].x + xVelocity,
@@ -90,7 +88,6 @@ function drawSnake(){
 };
 function changeDirection(event){
     const keyPressed = event.keyCode;
-    //console.log(keyPressed);
     const LEFT = 37;
     const UP = 38;
     const RIGHT = 39;
@@ -142,7 +139,7 @@ function checkGameOver(){
     }
 };
 function displayGameOver(){
-    ctx.font = "50px MV Boli";
+    ctx.font = "50px VT323";
     ctx.fillStyle = "black";
     ctx.textAlign = "center"; 
     ctx.textBaseline = "middle";
